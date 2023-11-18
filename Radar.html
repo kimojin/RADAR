@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>
+		RADAR
+	</title>
+	
+	<style id = "styles">
+		input[type="number"]::placeholder {
+			text-align: right;
+		}
+		.font{
+			font-family: courier new;
+			font-size: 20px;
+		}
+		.bottomright{
+			position: absolute; bottom: 5px; right: 5px; text-align: right;
+		}
+		label {
+   			 vertical-align: left;
+		}
+		textarea {
+   			 vertical-align: left;
+		}
+
+	</style>
+</head>
+
+<body>
+	<h1 id = "heading">
+		레이더 프로그램
+	</h1>
+	
+	<hr>
+	
+	<div style = "width:50%">
+		<form>
+			<p><b>표적의 방위각, 고도각, 거리를 입력하세요:</b></p>
+				<input type = "number" id = "azimuth" name = "distant" min="0" max = "359" length = "3" placeholder = "방위각" />&deg;
+				<input type = "number" id = "height" sytle = "text-align: right;" min = "0" max = "59" placeholder = "고도각"/>&deg
+				<input type="number" sytle = "text-align: right;" id = "distance" min = "0" max = "59" placeholder = "거리"/>km
+				<button type = "button" onclick = "display()">Enter</button>
+		</form>
+
+		<br><br>
+		
+
+		<p><b>해당 표적의 3차원 좌표:</b></p>
+		<textarea id = "coOrd" class = "font" rows = "1" cols = "10"></textarea>
+
+	</div>
+	
+	<script>
+		var x = 0, y = 0, z = 0;
+		
+		function display(){
+			document.getElementById('coOrd').innerHTML= x + ", " + y + ", " + z;
+		}
+	</script>
+	
+</body>
+
+</html>
