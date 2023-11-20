@@ -55,8 +55,7 @@
 		<br><br>
 		
 
-		<p><b>해당 표적의 3차원 좌표:</b></p>
-		<textarea id = "coOrd" class = "font" rows = "3" cols = "20"></textarea>
+		<p id = "coOrd"><b>해당 표적의 3차원 좌표:</b></p>
 
 	</div>
 	
@@ -82,12 +81,12 @@
 			
 			trans();
 			
-			document.getElementById("coOrd").innerHTML = "(" + tgtX.toFixed(2) + ", " + tgtY.toFixed(2) + ", " + tgtZ.toFixed(2) + ")";
+			document.getElementById("coOrd").innerHTML = "해당 표적의 3차원 좌표:" + "(" + tgtX.toFixed(2) + ", " + tgtY.toFixed(2) + ", " + tgtZ.toFixed(2) + ")";
 		}
 		
 		function trans(){
 			tgtX = rdrX + distance * Math.cos(degToRad(90 - azimuth)) * Math.cos(degToRad(height));
-			tgtY = rdrY + distance * Math.sin(degToRad(90 - azimuth)) * Math.sin(degToRad(height));
+			tgtY = rdrY + distance * Math.sin(degToRad(90 - azimuth)) * Math.cos(degToRad(height));
 			tgtZ = rdrZ + distance * Math.sin(degToRad(height));
 		}
 		
