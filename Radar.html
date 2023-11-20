@@ -49,7 +49,7 @@
 				<input type = "number" id = "azimuth" min = "0" max = "59" length = "3" placeholder = "방위각"/>&deg
 				<input type = "number" id = "height" min = "0" max = "59" length = "3" placeholder = "고도각"/>&deg
 				<input type="number" id = "distance" min = "0" max = "59" length = "3" placeholder = "거리"/>km
-				<button type = "button" onclick = "target()">Enter</button>
+				<button type = "button" onclick = "tgt()">Enter</button>
 		</form>
 
 		<br><br>
@@ -73,7 +73,7 @@
 			rdrZ = document.getElementById("z").value;
 		}
 		
-		function target(){
+		function tgt(){
 			azimuth = document.getElementById("azimuth").value;
 			height = document.getElementById("height").value;
 			distance = document.getElementById("distance").value;
@@ -86,7 +86,7 @@
 		function trans(){
 			tgtX = distance * Math.cos(degToRad(azimuth)) * Math.cos(degToRad(height));
 			tgtY = distance * Math.sin(degToRad(azimuth)) * Math.sin(degToRad(height));
-			tgtZ = distance;
+			tgtZ = distance * Math.sin(degToRad(height);
 		}
 		
 		function degToRad(a){
