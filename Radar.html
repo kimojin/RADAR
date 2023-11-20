@@ -35,27 +35,63 @@
 	<hr>
 	
 	<div style = "width:50%">
+	
+		<form>
+			<p><b>레이더의 좌표를 입력하세요:</b></p>
+				(<input type = "number" id = "x" min = "0" max = "59" length = "3" placeholder = "x"/>,
+				<input type = "number" id = "y" min = "0" max = "59" length = "3" placeholder = "y"/>,
+				<input type="number" id = "z" min = "0" max = "59" length = "3" placeholder = "z"/>)
+				<button type = "button" onclick = "radar()">Enter</button>
+		</form>
+		<br>
 		<form>
 			<p><b>표적의 방위각, 고도각, 거리를 입력하세요:</b></p>
-				<input type = "number" id = "azimuth" name = "distant" min="0" max = "359" length = "3" placeholder = "방위각" />&deg;
-				<input type = "number" id = "height" sytle = "text-align: right;" min = "0" max = "59" placeholder = "고도각"/>&deg
-				<input type="number" sytle = "text-align: right;" id = "distance" min = "0" max = "59" placeholder = "거리"/>km
-				<button type = "button" onclick = "display()">Enter</button>
+				<input type = "number" id = "azimuth" min = "0" max = "59" length = "3" placeholder = "방위각"/>&deg
+				<input type = "number" id = "height" min = "0" max = "59" length = "3" placeholder = "고도각"/>&deg
+				<input type="number" id = "distance" min = "0" max = "59" length = "3" placeholder = "거리"/>km
+				<button type = "button" onclick = "target()">Enter</button>
 		</form>
 
 		<br><br>
 		
 
 		<p><b>해당 표적의 3차원 좌표:</b></p>
-		<textarea id = "coOrd" class = "font" rows = "1" cols = "10"></textarea>
+		<textarea id = "coOrd" class = "font" rows = "1" cols = "15"></textarea>
 
 	</div>
 	
 	<script>
-		var x = 0, y = 0, z = 0;
+		var azimuth = 0, height = 0, distance = 0;
+		var rdrX = 0, rdrY = 0, rdrZ = 0;
+		var tgtX = 0, tgtY = 0, tgtZ = 0;
 		
-		function display(){
-			document.getElementById('coOrd').innerHTML= "(" + x + ", " + y + ", " + z + ")";
+		const PI = Math.PI;
+		
+		function radar(){
+			rdrX = document.getElementById("x").value;
+			rdrY = document.getElementById("y").value;
+			rdrZ = document.getElementById("z").value;
+		}
+		
+		function target(){
+			azimuth = document.getElementById("azimuth").value;
+			height = document.getElementById("height").value;
+			distance = document.getElementById("distance").value;
+			
+			trans();
+			
+			document.getElementById("coOrd").innerHTML = "(" + tgtX + ", " + tgtY + ", " + tgtZ + ")";
+		}
+		
+		function trans(){
+			tgtX = distance * Math.cos(degToRad(azimuth)) * Math.cos(degToRad(height));
+			tgtY = distance * Math.sin(degToRad(azimuth)) * Math.sin(degToRad(height));
+			tgtZ = distance;
+		}
+		
+		function degToRad(a){
+			let b = a * (PI/180);	
+			return b;
 		}
 	</script>
 	
