@@ -56,7 +56,7 @@
 		
 
 		<p><b>해당 표적의 3차원 좌표:</b></p>
-		<textarea id = "coOrd" class = "font" rows = "1" cols = "15"></textarea>
+		<textarea id = "coOrd" class = "font" rows = "3" cols = "20"></textarea>
 
 	</div>
 	
@@ -68,25 +68,27 @@
 		const PI = Math.PI;
 		
 		function radar(){
-			rdrX = document.getElementById("x").value;
-			rdrY = document.getElementById("y").value;
-			rdrZ = document.getElementById("z").value;
+			rdrX = parseInt(document.getElementById("x").value);
+			rdrY = parseInt(document.getElementById("y").value);
+			rdrZ = parseInt(document.getElementById("z").value);
 		}
 		
 		function tgt(){
+			radar();
+			
 			azimuth = document.getElementById("azimuth").value;
 			height = document.getElementById("height").value;
 			distance = document.getElementById("distance").value;
 			
 			trans();
 			
-			document.getElementById("coOrd").innerHTML = "(" + tgtX + ", " + tgtY + ", " + tgtZ + ")";
+			document.getElementById("coOrd").innerHTML = "(" + tgtX.toFixed(2) + ", " + tgtY.toFixed(2) + ", " + tgtZ.toFixed(2) + ")";
 		}
 		
 		function trans(){
-			tgtX = distance * Math.cos(degToRad(azimuth)) * Math.cos(degToRad(height));
-			tgtY = distance * Math.sin(degToRad(azimuth)) * Math.sin(degToRad(height));
-			tgtZ = distance * Math.sin(degToRad(height);
+			tgtX = rdrX + distance * Math.cos(degToRad(90 - azimuth)) * Math.cos(degToRad(height));
+			tgtY = rdrY + distance * Math.sin(degToRad(90 - azimuth)) * Math.sin(degToRad(height));
+			tgtZ = rdrZ + distance * Math.sin(degToRad(height));
 		}
 		
 		function degToRad(a){
